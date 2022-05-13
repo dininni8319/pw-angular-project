@@ -1,37 +1,54 @@
-
 <!-- That's Angular template syntax -->
-<h1>Password Generator</h1>
+<div class="container-fluid ">
+  <div class="columns is-centered">
+    <div class="box column is-three-fifths">
+    
+        <h1 class="title has-text-centered">Password Generator</h1>
+        <div class="field">
+          <label>Length</label>
+          <input class="input" (input)="onChangeLength($event)" />
+        </div>
+  
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input (change)="onChangeUseLetters()" type="checkbox" />
+              Use Letters
+            </label>
+          </div>
+        </div>
+  
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input (change)="onChangeUseNumbers()" type="checkbox" />
+              Use Numbers
+            </label>
+          </div>
+        </div>
+  
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input (change)="onChangeUseSymbols()" type="checkbox" />
+              Use Symbols
+            </label>
+          </div>
+        </div>
+     <!-- we are defining the event and calling the function in side the app.component.ts file  -->
+  
+        <button [disabled]="
+            !(length && (includeLetters || includeSymbols || includeNumbers))
+          " (click)="onButtonClick()" class="button is-link is-fullwidth">
+          Generate!
+        </button>
+  
+        <div class="box" *ngIf="password">
+          <label>Your Password</label>
+          <input class="input" [value]="password" />
+        </div>
+      
 
-<div>
-  <label for="">Enter Length</label>
-  <!-- we are accessing the event using $event  -->
-  <input (input)="onChangeLength($event)"/>
-</div>
-
-<div>
-  <label for=""> Use Letters</label>
-  <input type="checkbox" (change)="onChangeUseLetters()" />
-</div>
-
-<div>
-  <label for=""> Use Numbers</label>
-  <input type="checkbox" (change)="onChangeUseNumbers()" />
-</div>
-
-<div>
-  <label for=""> Use Symbols</label>
-  <input type="checkbox"  (change)="onChangeUseSymbols()" />
-</div>
-
-<div>
-
-   <!-- we are defining the event and calling the function in side the app.component.ts file  -->
-  <button 
-    [disabled]="!(length && (includeLetters || includeNumbers || includeSymbols))" 
-    (click)="onButtonClick()">Generate!</button>
-</div>
-T
-<div>
-  <label for="">Your Password</label>
-  <input type="text" [value]="password">
+    </div>
+  </div>
 </div>
